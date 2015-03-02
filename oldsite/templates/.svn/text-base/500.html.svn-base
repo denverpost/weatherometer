@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}500: {% endblock%}
+{% block description %}{% endblock%}
+{% block error %}[500]{% endblock%}
+{% block style %}{% endblock style %}
+
+{% block main %}
+<h1>Sorry, we had an internal server error.</h1>
+<p>The Weather-O-Meter admins get an email every time you see this page, so there's no need to contact us &mdash; we're aware of the problem, and we're going to fix it soon.</p>
+
+<p>In the meantime, you can <a href="#" onClick="history.back();">go back a page</a>, <a href="/">go to the Weather-O-Meter home page</a>, or anything, anything else.</p>
+
+{% endblock main %}

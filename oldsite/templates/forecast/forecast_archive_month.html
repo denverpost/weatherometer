@@ -1,0 +1,21 @@
+{% extends "forecast/base.html" %}
+{% block title_long %}{% block title %}{{ month|date:"F Y" }} News Archive: {% endblock %}{% endblock %}
+{% block description %}Month-based index for {{ month|date:"F Y" }} of Planck News and Blogs Posts.{% endblock%}
+
+{% block style %}{% endblock style %}
+
+{% block main %}
+<h1>Article Archive</h1>
+
+<dl>
+{% for item in article_list|dictsortreversed:"date_published" %}
+        <dt><a href="{{ item.get_absolute_url }}" title="{{ item.name }}">{{ item.name }}</a></dt>
+            <dd class="description">{{ item.intro }}</dd>
+            <dd class="package"><strong>Packaged Under: </strong> {% for subitem in item.packages.all %}<a href="{{ subitem.get_absolute_url }}" title="{{ subitem.title }}">{{ subitem.title }}</a> {% endfor %}</dd>
+            <dd class="date">{{ item.date_published|date:"M j, Y" }}</dd>
+{% endfor %}
+</dl>
+
+{% endblock main %}
+
+{% block sidebar %}{% endblock sidebar %}

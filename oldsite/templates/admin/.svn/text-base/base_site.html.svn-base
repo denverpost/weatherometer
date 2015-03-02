@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Weather-O-Meter site admin' %}{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="/">{% trans 'Weather-O-Meter administration' %}</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
