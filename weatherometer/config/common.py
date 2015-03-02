@@ -48,6 +48,9 @@ class Common(Configuration):
     LOCAL_APPS = (
         'users',  # custom users app
         # Your stuff: custom apps go here
+        'forecast',
+        'forecaster',
+        'charts',
     )
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
