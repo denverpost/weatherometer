@@ -1,0 +1,20 @@
+{% extends "forecast/base.html" %}
+{% block title_long %}{% block title %}{{ object.user.first_name }}'s Weather Forecast: {% endblock title %}{% endblock title_long %}
+{% block description %}{% endblock %}
+{% block head %}{% endblock head %}
+{% block style %}{% endblock style %}
+
+{% block main %}
+<h1><a href="{{ object.homepage_url }}">{{ object.user.first_name }}'s Weather Forecast</a></h1>
+<h3><a href="{{ object.weather_url }}">{{ object.user.first_name }}'s weather page</a></h3>
+<h2>Today</h2>
+{% for forecast in object.forecast_set.all %}
+    <dl>
+    {% for item in forecast.forecastitem_set.all %}
+    {% ifchanged %}<dt>{{ item.forecast_day }}</dt>{% endifchanged %}
+    <dd>{{ item.get_type_display }}: {{ item.temperature }}</dd>
+    <dd></dd>
+    {% endfor %}
+    </dl>
+{% endfor %}
+{% endblock main %}
