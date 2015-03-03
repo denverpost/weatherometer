@@ -1,9 +1,24 @@
-wget -S -O news2.jpg http://cw2.trb.com/includes/webcams/kwgn/Web%20Weekly%20Planner.JPG
-mv news2.jpg news2_$(date +%Y%m%d-%H%M).jpg
+#!/bin/bash
+# This file allows us to grab the day's forecast from each of our forecasters
+# at the same time each day.
 
+# CHANNEL 2
+# FORECAST http://cf.c.ooyala.com/5hM3ZwczqDKBfSomBlJGM0jbSsf3g8h9/promo249657275
+# CORRESPONDS WITH THIS MARKUP <div id="playerContainer-5hm3zwczqdkbfsombljgm0jbssf3g8h9" class="ooyala-video-wrapper"></div>
+# ON THIS PAGE http://kwgn.com/weather/
+#wget -S -O news2.jpg http://cw2.trb.com/includes/webcams/kwgn/Web%20Weekly%20Planner.JPG
+#mv news2.jpg news2_$(date +%Y%m%d-%H%M).jpg
+
+# FOX
+# FORECAST http://cf.c.ooyala.com/00nxzwczqco_tsqsa48ctgtvg7yhwleb/promo249657462
+# CORRESPONDS WITH THIS MARKUP <div id="playerContainer-00nxzwczqco_tsqsa48ctgtvg7yhwleb" class="ooyala-video-wrapper"></div>
+# ON THIS PAGE http://kdvr.com/weather/
 wget -S -O fox.jpg http://media.myfoxcolorado.com/weather/5_Day_Forecast.gif
 mv fox.jpg fox_$(date +%Y%m%d-%H%M).jpg
 
+# 9NEWS
+# FORECAST http://origin.9news.com/weather/Planning_16x9.jpg
+# ON THIS PAGE http://www.9news.com/weather/
 wget -S -O 9news01.jpg http://www.9news.com/genthumb/genthumbwx.ashx?w=250&h=145&e=5&i=/weather/graphics/Today_Forecast.jpg
 wget -S -O 9news02.jpg http://www.9news.com/genthumb/genthumbwx.ashx?w=250&h=145&e=5&i=/weather/graphics/Tonight_Forecast.jpg
 wget -S -O 9news03.jpg http://www.9news.com/genthumb/genthumbwx.ashx?w=350&h=197&e=5&i=/weather/graphics/Planning_Forecast_popup.jpg
@@ -11,23 +26,37 @@ mv 9news01.jpg 9news01_$(date +%Y%m%d-%H%M).jpg
 mv 9news02.jpg 9news02_$(date +%Y%m%d-%H%M).jpg
 mv 9news03.jpg 9news03_$(date +%Y%m%d-%H%M).jpg
 
-wget -S -O cbs4.jpg http://radar.cbslocal.com/kcnc/5day.jpg
-mv cbs4.jpg cbs4_$(date +%Y%m%d-%H%M).jpg
+# CBS4
+# FORECAST http://weather.denver.cbslocal.com/US/CO/Denver/KDEN.html
+# GOTTA SCRAPE THE HTML
+# ON THIS PAGE http://weather.denver.cbslocal.com/US/CO/Denver/KDEN.html
+wget -S -O cbs4.html http://weather.denver.cbslocal.com/US/CO/Denver/KDEN.html
+mv cbs4.html cbs4_$(date +%Y%m%d-%H%M).html
 
+# CHANNEL 7 
+# FORECAST http://media.thedenverchannel.com/photo/MAP/261841731/261841731_Position1.JPG
+# WILL THAT URL CHANGE?
+# ON THIS PAGE http://www.thedenverchannel.com/weather
 wget -S -O denverchannel.jpg http://images.ibsys.com/den/images/weather/auto/kmgh_7day_640x480.jpg
 mv denverchannel.jpg denverchannel_$(date +%Y%m%d-%H%M).jpg
 
+# WEATHER CHANNEL
 wget -S -O weatherchannel.xml "http://xoap.weather.com/weather/local/USCO0105?cc=1&dayf=10&unit=s"
 mv weatherchannel.xml weatherchannel_$(date +%Y%m%d-%H%M).xml
 
-wget -S -O rmn.html http://www.rockymountainnews.com/weather/
-mv rmn.html rmn_$(date +%Y%m%d-%H%M).html
+# WEATHER UNDERGROUND
+# Gotta build an interface to its API
 
-wget -S -O dpo.html http://weathernow.denverpost.com/hw3.php
-mv dpo.html dpo_$(date +%Y%m%d-%H%M).html
-
+# NWS
+# FORECAST http://forecast.weather.gov/MapClick.php?CityName=Denver&state=CO&site=BOU&textField1=39.768&textField2=-104.873
+# GOTTA SCRAPE
 wget -S -O nws.html "http://forecast.weather.gov/MapClick.php?CityName=Denver&state=CO&site=BOU&textField1=39.768&textField2=-104.873"
 mv nws.html nws_$(date +%Y%m%d-%H%M).html
+
+# ACTUAL TEMPS
+# SCRAPE http://www.nws.noaa.gov/xml/tpex/scs.php
+# LOOKS LIKE previous day temps / current day forecast / next day forecast
+# DENVER           35  27         SNOW    27/04   SNOW    17/01
 
 
 
