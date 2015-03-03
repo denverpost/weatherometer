@@ -1,6 +1,71 @@
 {% load staticfiles i18n %}<!DOCTYPE html>
 <html lang="en" ng-app>
-  <head>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{title}} - Weather-O-Meter, The Denver Post</title>
+    <link rel="canonical" href="" />
+    <link rel="shortcut icon" href="http://extras.mnginteractive.com/live/media/favIcon/dpo/favicon.ico" type="image/x-icon" />
+
+    <meta name="distribution" content="global" />
+    <meta name="robots" content="index, nofollow" />
+    <meta name="title" content="{{title}}" />
+    <meta name="language" content="en, sv" />
+    <meta name="Copyright" content="Copyright &copy; The Denver Post." />
+    <link rel="author" href="humans.txt" />
+
+    <meta name="description" content="{{description}}">
+    <meta name="news_keywords" content="{{keywords}}">
+
+    <meta name="twitter:card" value="summary" />
+    <meta name="twitter:url" value="" />
+    <meta name="twitter:title" value="{{title}}" />
+    <meta name="twitter:description" value="{{description}}" />
+    <meta name="twitter:image" value="" />
+    <meta name="twitter:site" value="@denverpost" />
+    <meta name="twitter:domain" value="denverpost.com" />
+    <meta name="twitter:creator" content="@joemurph">
+    <meta name="twitter:app:name:iphone" value="Denver Post">
+    <meta name="twitter:app:name:ipad" value="Denver Post">
+    <meta name="twitter:app:name:googleplay" value="The Denver Post">
+    <meta name="twitter:app:id:iphone" value="id375264133">
+    <meta name="twitter:app:id:ipad" value="id409389010">
+    <meta name="twitter:app:id:googleplay" value="com.ap.denverpost" />
+
+    <meta property="fb:app_id" content="105517551922"/>
+    <meta property="og:title" content="{{title}}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:site_name" content="The Denver Post" />
+    <meta property="og:description" content="{{description}}" />
+    <meta property="article:publisher" content="https://www.facebook.com/denverpost" />
+    <meta name="google-site-verification" content="2bKNvyyGh6DUlOvH1PYsmKN4KRlb-0ZI7TvFtuKLeAc" />
+
+    <style type="text/css">
+        body { margin:0; }
+        #wrapper { width:1008px; margin:0 auto; margin-top:10px; margin-bottom:10px; }
+        #dfmEndFooterLinks ul li { list-style-type:none; margin-left:15px!important; }
+        @media only screen and (max-width:650px) {
+            #dfmHeader div.foot, #dfmHeader div.sub-navigation, #dfmHeader #dfmMasthead #dfmPageTitle, #dfmHeader #dfmMasthead #dfmSearch, #dfmHeader #dfmMasthead #weatherBoxReal, #dfmHeader #dfmLeaderboardAd { display:none; }
+            #dfmHeader #dfmMasthead h3 { margin-left:.5em; }
+            #dfmHeader div.page-head div.body { background:none; border:none; }
+            #dfmHeader div.page-head div.body div.margin { width:100%; }
+            #wrapper { width:100%; overflow:hidden; }
+        }
+    </style>
+
+    
+    <script src="http://extras.denverpost.com/media/js/jquery-min.js"></script>
+    <script src="http://extras.denverpost.com/media/js/dputils-min.js?v=3"></script>
+    <script async src="http://launch.newsinc.com/js/embed.js" id="_nw2e-js"></script>
+    <script src="http://www.googletagservices.com/tag/js/gpt.js"></script>
+
+    <script type="text/javascript">
+        //Chartbeat startup
+        var _sf_startpt=(new Date()).getTime();
+        var _sf_async_config={};
+    </script>
+
     <meta charset="utf-8">
     <title>{% block title %}weatherometer{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,14 +78,6 @@
     <![endif]-->
 
     {% block css %}
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-
-    <!-- Your stuff: Third-party css libraries go here -->
-
     <!-- This file store project specific CSS -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
     {% endblock %}
@@ -28,9 +85,7 @@
     {% block angular %}
       <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     {% endblock %}
-
-  </head>
-
+</head>
   <body>
 
     <div class="header navbar">
