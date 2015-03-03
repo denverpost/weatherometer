@@ -6,7 +6,9 @@
 {% block main %}
 <form action="/forecast/add/" method="post">
     {% csrf_token %}
-    {{ form }}
+    {% for item in forms %}
+    {{ item }}
+    {% endfor %}
     <input type="submit" value="Submit" />
 </form>
 {% endblock main %}

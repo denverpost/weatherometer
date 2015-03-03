@@ -1,4 +1,5 @@
 from models import * 
+from forecaster.models import Forecaster
 from forms import ForecastForm
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
@@ -19,6 +20,9 @@ def update_forecast(request):
     if request.method == 'POST':
         pass
     else:
-        form = ForecastForm()
+        forms = []
+        forecasters = Forecaster.objects.all()
+        for item in forecasters:
+            forms.append(ForecastForm(initial={'forecaster': item.pk}))
 
-    return render(request, 'forecast/form.html', {'form': form})
+    return render(request, 'forecast/form.html', {'forms': forms})
