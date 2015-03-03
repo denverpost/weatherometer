@@ -1,1 +1,14 @@
-HI
+{% extends "forecast/base.html" %}
+{% block title_long %}{% block title %}{% endblock %}{% endblock %}
+{% block description %}{% endblock%}
+{% block style %}{% endblock style %}
+
+{% block main %}
+<form action="/forecast/add/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock main %}
+
+{% block sidebar %}{% endblock sidebar %}

@@ -1,10 +1,14 @@
 from models import * 
 from forms import ForecastForm
+from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 import datetime
+
+class ForecastToday():
+    pass
 
 def forecast_today(request):
     return object_list(request,
@@ -12,7 +16,7 @@ def forecast_today(request):
         paginate_by=50, allow_empty=True)
 
 def update_forecast(request):
-    if request.method == POST:
+    if request.method == 'POST':
         pass
     else:
         form = ForecastForm()

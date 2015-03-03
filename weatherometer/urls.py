@@ -9,7 +9,8 @@ from django.views.generic.list import ListView
 
 from forecast.models import *
 from forecaster.models import *
-#from forecast.views import ForecastList, ForecastDetail
+from forecast.views import *
+from forecast.views import ForecastToday
 from forecaster.views import ForecasterList, ForecasterDetail
 
 # Uncomment the next two lines to enable the admin:
@@ -82,6 +83,7 @@ urlpatterns = patterns('',
     (r'^forecaster/$', ForecasterList.as_view()),
     
     # Model: Forecast
+    (r'^forecast/add/$', update_forecast),
     (r'^forecast/today/$', 'forecast.views.forecast_today'),
     (r'^forecast/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/$', 'django.views.generic.dates.DayArchiveView', forecast_date_dict),
     (r'^forecast/(?P<year>\d{4})/(?P<month>[a-z]{3})/$', 'django.views.generic.dates.MonthArchiveView', forecast_date_dict),
