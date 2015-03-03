@@ -78,7 +78,6 @@ urlpatterns = patterns('',
     url(r'^avatar/', include('avatar.urls')),
 
     # Your stuff: custom urls go here
-    # Home
     url(r'^$', HomeView.as_view(), name='home'),
     
     # Model: Forecaster

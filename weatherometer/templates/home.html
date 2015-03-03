@@ -31,7 +31,9 @@ div#highscores dl dt, div#highscores dl dd
 	
 }
 {% endblock style %}
-{% block banner %}<a href="/"><h1 class="img" id="weather-logo">Denver, Colorado's Weather-O-Meter</h1></a>
+{% block banner %}
+{% load accuracy %}
+    <a href="/"><h1 class="img" id="weather-logo">Denver, Colorado's Weather-O-Meter</h1></a>
 	<div id="highscores">
 	<h4>Past Week</h4>
 	{% accuracy_list 'week' as list %}
@@ -50,6 +52,7 @@ div#highscores dl dt, div#highscores dl dd
 	</div>
 	{% endblock banner %}
 {% block main %}
+{% load temperature forecastitem %}
 	{% temperature_item 'today' as item %}
         <p>
             Welcome to Denver's Weather-O-Meter &mdash; gauging the accuracy of the city's weather forecasts.<br>

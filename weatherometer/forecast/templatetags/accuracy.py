@@ -10,7 +10,6 @@ register = template.Library()
 def multiply(value, factor):
     "Removes all underscores from the given string and replace them with a space"
     return float(value * float(factor))
-    #return value
 register.filter(multiply)
 
 """
