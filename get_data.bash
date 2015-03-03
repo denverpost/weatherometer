@@ -50,6 +50,10 @@ mv weatherchannel.xml weatherchannel_$(date +%Y%m%d-%H%M).xml
 # NWS
 # FORECAST http://forecast.weather.gov/MapClick.php?CityName=Denver&state=CO&site=BOU&textField1=39.768&textField2=-104.873
 # GOTTA SCRAPE
+# MAY ALSO BE ABLE TO USE 7-DAY IN THIS ELEMENT IN THE XML HERE: <parameters applicable-location="KDEN"> <temperature type="maximum" units="Fahrenheit" time-layout="k-p12h-n7-5">
+# http://weather.noaa.gov/pub/SL.us008001/DF.xml/DC.textf/DS.xforx7/sn.0000.txt
+# IT'S PROBABLY EASIER TO USE THE THREE-DAY FORECAST HERE:
+# http://www.nws.noaa.gov/view/xml_view2.php?tname=XF0&prodver=1
 wget -S -O nws.html "http://forecast.weather.gov/MapClick.php?CityName=Denver&state=CO&site=BOU&textField1=39.768&textField2=-104.873"
 mv nws.html nws_$(date +%Y%m%d-%H%M).html
 
