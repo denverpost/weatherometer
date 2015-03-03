@@ -2,6 +2,8 @@
 # This file allows us to grab the day's forecast from each of our forecasters
 # at the same time each day.
 
+DATE=`date +%Y%m%d-%H%M`
+
 # CHANNEL 2
 # FORECAST http://cf.c.ooyala.com/5hM3ZwczqDKBfSomBlJGM0jbSsf3g8h9/promo249657275
 # CORRESPONDS WITH THIS MARKUP <div id="playerContainer-5hm3zwczqdkbfsombljgm0jbssf3g8h9" class="ooyala-video-wrapper"></div>
@@ -69,6 +71,10 @@ mv nws.html nws_$(date +%Y%m%d-%H%M).html
 # lows have been established, which is usually
 # by 8 a.m.
 # ===============================================
+
+# RELATED ACTIONS:
+# ./weatherometer/forecast/commands/updateaccuracy.py
+# ./weatherometer/forecast/commands/updatetempdiff.py
 
 # CREATE the forecast objects
 
