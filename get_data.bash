@@ -62,6 +62,21 @@ mv nws.html nws_$(date +%Y%m%d-%H%M).html
 # LOOKS LIKE previous day temps / current day forecast / next day forecast
 # DENVER           35  27         SNOW    27/04   SNOW    17/01
 
+# ===============================================
+# DAILY ADMIN
+# Going under the assumption we're updating the
+# weather data in the morning, after the morning
+# lows have been established, which is usually
+# by 8 a.m.
+# ===============================================
+
+# CREATE the forecast objects
+
+# PUBLISH links to each of the day's forecast-edit pages
+
+# CREATE an ActualTemperature object for the previous day's forecasts.
+
+# ASSESS the accuracy of the previous day's forecasts.
 
 
 // datadir/forecast_forecast.py
