@@ -18,8 +18,15 @@ forecaster_dict = {
     'queryset': Forecaster.objects.all(),
 }
 
+class HomeView(ListView):
+    template_name = 'home.html'
+
+    def get_queryset(self):
+        return AccuracyRating.objects.all()
+
 home_dict = {
-    'queryset': AccuracyRating.objects.filter(type__exact=5, daytype__exact=0).order_by('avg'),
+    #'queryset': AccuracyRating.objects.filter(type__exact=5, daytype__exact=0).order_by('avg'),
+    'queryset': AccuracyRating.objects.all(),
     'template_name': 'home.html',
 }
 forecast_date_year_dict = {
@@ -72,7 +79,7 @@ urlpatterns = patterns('',
 
     # Your stuff: custom urls go here
     # Home
-    url(r'^$', ListView.as_view(), home_dict, 'home'),
+    url(r'^$', HomeView.as_view(), name='home'),
     
     # Model: Forecaster
     (r'^forecaster/(?P<slug>[-\w]+)/$', 'forecaster.views.detail'),
