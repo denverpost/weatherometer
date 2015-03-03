@@ -9,6 +9,8 @@ from django.views.generic.list import ListView
 
 from forecast.models import *
 from forecaster.models import *
+#from forecast.views import ForecastList, ForecastDetail
+from forecaster.views import ForecasterList, ForecasterDetail
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -24,11 +26,6 @@ class HomeView(ListView):
     def get_queryset(self):
         return AccuracyRating.objects.all()
 
-home_dict = {
-    #'queryset': AccuracyRating.objects.filter(type__exact=5, daytype__exact=0).order_by('avg'),
-    'queryset': AccuracyRating.objects.all(),
-    'template_name': 'home.html',
-}
 forecast_date_year_dict = {
     'queryset': Forecast.objects.all(),
     'date_field': 'date',
@@ -81,8 +78,8 @@ urlpatterns = patterns('',
     url(r'^$', HomeView.as_view(), name='home'),
     
     # Model: Forecaster
-    (r'^forecaster/(?P<slug>[-\w]+)/$', 'forecaster.views.detail'),
-    (r'^forecaster/$', 'django.views.generic.list.ListView', forecaster_dict),
+    (r'^forecaster/(?P<slug>[-\w]+)/$', ForecasterDetail.as_view()),
+    (r'^forecaster/$', ForecasterList.as_view()),
     
     # Model: Forecast
     (r'^forecast/today/$', 'forecast.views.forecast_today'),
