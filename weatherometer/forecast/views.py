@@ -1,6 +1,6 @@
 from models import * 
 from forecaster.models import Forecaster
-from forms import ForecastForm
+from forms import ForecastForm, formset
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -25,4 +25,4 @@ def update_forecast(request):
         for item in forecasters:
             forms.append(ForecastForm(initial={'forecaster': item.pk}))
 
-    return render(request, 'forecast/form.html', {'forms': forms})
+    return render(request, 'forecast/form.html', {'forms': forms, 'formset': formset})

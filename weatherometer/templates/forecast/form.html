@@ -6,8 +6,10 @@
 {% block main %}
 <form action="/forecast/add/" method="post">
     {% csrf_token %}
+    {{ formset.as_p }}
+<hr noshade>
     {% for item in forms %}
-    {{ item }}
+    {{ item.as_p }}
     {% endfor %}
     <input type="submit" value="Submit" />
 </form>
