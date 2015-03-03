@@ -5,6 +5,7 @@ from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
+from django.views.generic.list import ListView
 
 from forecast.models import *
 from forecaster.models import *
@@ -71,7 +72,7 @@ urlpatterns = patterns('',
 
     # Your stuff: custom urls go here
     # Home
-    url(r'^$', 'django.views.generic.list.ListView', home_dict, 'home'),
+    url(r'^$', ListView.as_view(), home_dict, 'home'),
     
     # Model: Forecaster
     (r'^forecaster/(?P<slug>[-\w]+)/$', 'forecaster.views.detail'),
