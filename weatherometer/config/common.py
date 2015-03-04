@@ -51,6 +51,7 @@ class Common(Configuration):
         'forecast',
         'forecaster',
         'charts',
+        'bakery',
     )
 
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

@@ -42,3 +42,8 @@ class Local(Common):
     # end django-debug-toolbar
 
     # Your local stuff: Below this line define 3rd party library settings
+    BUILD_DIR = '~/work/weatherometer/build/'
+    BAKERY_VIEWS = (
+        'urls.BakeryHomeView',
+        #'forecast.views.TodayView',
+    )

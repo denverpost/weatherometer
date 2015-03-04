@@ -13,6 +13,8 @@ from forecast.views import *
 from forecast.views import ForecastToday
 from forecaster.views import ForecasterList, ForecasterDetail
 
+from bakery.views import BuildableDetailView, BuildableListView
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -26,6 +28,10 @@ class HomeView(ListView):
 
     def get_queryset(self):
         return AccuracyRating.objects.all()
+
+class BakeryHomeView(BuildableDetailView):
+    template_name = 'home.html'
+    queryset = AccuracyRating.objects.all()
 
 forecast_date_year_dict = {
     'queryset': Forecast.objects.all(),
