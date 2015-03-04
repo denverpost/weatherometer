@@ -17,10 +17,11 @@ def forecast_today(request):
         paginate_by=50, allow_empty=True)
 
 def update_forecast(request):
+    forms = []
     if request.method == 'POST':
+        # print dir(request)
         pass
     else:
-        forms = []
         forecasters = Forecaster.objects.all()
         for item in forecasters:
             forms.append(ForecastForm(initial={'forecaster': item.pk}))
