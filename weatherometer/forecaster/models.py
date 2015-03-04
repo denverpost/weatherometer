@@ -47,6 +47,8 @@ class AccuracyRating(models.Model):
 
     #def __unicode__(self):
     #    return "%i %i" % (self.type, self.daytype)
+    def get_absolute_url(self):
+        return "/forecaster/%s/today/" % ( self.forecaster.slug )
 
     class Admin:
         list_display = ('forecaster', 'type', 'daytype', 'avg', 'correct', 'count', 'correctratio')

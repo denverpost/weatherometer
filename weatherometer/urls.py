@@ -85,6 +85,7 @@ urlpatterns = patterns('',
     url(r'^$', HomeView.as_view(), name='home'),
     
     # Model: Forecaster
+    #(r'^forecaster/(?P<slug>[-\w]+)/today/$', AccuracyRatingDetail.as_view()),
     (r'^forecaster/(?P<slug>[-\w]+)/$', ForecasterDetail.as_view()),
     (r'^forecaster/$', ForecasterList.as_view()),
     
