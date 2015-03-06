@@ -9,8 +9,5 @@ class Command(BaseCommand):
     args = '[appname ...]'
 
     def handle(self, *app_labels, **options):
-        from django.db.models import get_app, get_apps, get_models
-        from django.conf import settings
-        from datetime import datetime, timedelta
         up = Updaters()
         up.update_accuracy()
