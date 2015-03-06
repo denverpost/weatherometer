@@ -18,11 +18,20 @@ def forecast_today(request):
 
 def update_forecast(request):
     forms = []
+    forecasters = Forecaster.objects.all()
     if request.method == 'POST':
-        # print dir(request)
-        pass
+        # Loop through the forecasters.
+        # If we have forecast values for the forecaster, and we don't already
+        # have a forecast for that slot on this day, we add it.
+        # The values for each forecast look like:
+        # - id_date_{{item.pk}}
+        # -- For each forecast item:
+        # -- id_forecastitem-{{item.pk}}-temperature
+        # -- id_forecastitem-{{item.pk}}-forecast_day_{{count}} // day being 0 for today, 1 for tomorrow, 2 day after
+        # -- id_forecastitem-{{item.pk}}-type_{{count}} // type being high or low
+        for item in forecasters:
+            pass
     else:
-        forecasters = Forecaster.objects.all()
         for item in forecasters:
             forms.append(ForecastForm(initial={'forecaster': item.pk}))
 
