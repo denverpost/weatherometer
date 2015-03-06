@@ -4,7 +4,15 @@
 {% block style %}{% endblock style %}
 
 {% block main %}
-<form action="/forecast/add/" method="post">
+<div class="col">
+<h2>Update the high and low temperature for the day</h2>
+<form action="/forecast/add/" id="tempform" name="tempform">
+
+</form>
+</div>
+<div class="col">
+<h2>Update the forecasts</h2>
+<form action="/forecast/add/" id="forecastform" name="forecastform" method="post">
     {% csrf_token %}
 {% for item in forecasters %}
     <h3>{{item}}'s forecast as delivered today ({% now "Y-m-d" %})</h3>
@@ -144,6 +152,7 @@
 {% endcomment %}
     <input type="submit" value="Submit" />
 </form>
+</div>
 {% endblock main %}
 
 {% block sidebar %}{% endblock sidebar %}
