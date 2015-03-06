@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from forecast.models import *
 from forecaster.models import *
-from forecast.forms import update_accuracy
+from forecast.forms import Updaters
 
 class Command(BaseCommand):
     help = """Updates the "differential" field of the weather ForecastItem model
@@ -12,4 +12,5 @@ class Command(BaseCommand):
         from django.db.models import get_app, get_apps, get_models
         from django.conf import settings
         from datetime import datetime, timedelta
-        update_accuracy()
+        up = Updaters()
+        up.update_accuracy()
