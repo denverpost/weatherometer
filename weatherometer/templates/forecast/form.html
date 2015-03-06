@@ -6,11 +6,142 @@
 {% block main %}
 <form action="/forecast/add/" method="post">
     {% csrf_token %}
+{% for item in forecasters %}
+    <h3>{{item}}'s forecast as delivered today ({% now "Y-m-d" %})</h3>
+    <input id="id_date_{{item.pk}}" name="date" type="hidden" value="{% now "Y-m-d" %}" />
+    <p>
+        <strong>Today's high:</strong>
+        <input id="id_forecastitem-{{item.pk}}-temperature" name="forecastitem_set-{{item.pk}}-temperature" type="number" />
+        <input id="id_forecastitem-{{item.pk}}-forecast_day_0" name="forecastitem_set-{{item.pk}}-forecast_day" type="hidden" value="0" />
+        <input id="id_forecastitem-{{item.pk}}-type_0" name="forecastitem_set-{{item.pk}}-type" value="1" type="hidden" />
+    </p>
+    <p>
+        <strong>Tonight's low:</strong>
+        <input id="id_forecastitem-{{item.pk}}-temperature" name="forecastitem_set-{{item.pk}}-temperature" type="number" />
+        <input id="id_forecastitem-{{item.pk}}-forecast_day_1" name="forecastitem_set-{{item.pk}}-forecast_day" type="hidden" value="1" />
+        <input id="id_forecastitem-{{item.pk}}-type_1" name="forecastitem_set-{{item.pk}}-type" value="-1" type="hidden" />
+    </p>
+{% endfor %}
+    
+{% comment %}
+    <p><label for="id_forecaster">Forecaster:</label> <select id="id_forecaster" name="forecaster">
+<option value="">---------</option>
+<option value="1">Joe</option>
+<option value="2" selected="selected">9News</option>
+<option value="3">CBS4</option>
+<option value="4">FOX31</option>
+<option value="5">The Denver Channel</option>
+<option value="6">Channel 2</option>
+<option value="7">The Weather Channel</option>
+<option value="8">The Weather Underground</option>
+<option value="9">NWS</option>
+</select></p>
+<p><label for="id_date">Date:</label> <input id="id_date" name="date" type="text" value="2015-03-06" /></p>
+    
+    <p><label for="id_forecaster">Forecaster:</label> <select id="id_forecaster" name="forecaster">
+<option value="">---------</option>
+<option value="1">Joe</option>
+<option value="2">9News</option>
+<option value="3" selected="selected">CBS4</option>
+<option value="4">FOX31</option>
+<option value="5">The Denver Channel</option>
+<option value="6">Channel 2</option>
+<option value="7">The Weather Channel</option>
+<option value="8">The Weather Underground</option>
+<option value="9">NWS</option>
+</select></p>
+<p><label for="id_date">Date:</label> <input id="id_date" name="date" type="text" value="2015-03-06" /></p>
+    
+    <p><label for="id_forecaster">Forecaster:</label> <select id="id_forecaster" name="forecaster">
+<option value="">---------</option>
+<option value="1">Joe</option>
+<option value="2">9News</option>
+<option value="3">CBS4</option>
+<option value="4" selected="selected">FOX31</option>
+<option value="5">The Denver Channel</option>
+<option value="6">Channel 2</option>
+<option value="7">The Weather Channel</option>
+<option value="8">The Weather Underground</option>
+<option value="9">NWS</option>
+</select></p>
+<p><label for="id_date">Date:</label> <input id="id_date" name="date" type="text" value="2015-03-06" /></p>
+    
+    <p><label for="id_forecaster">Forecaster:</label> <select id="id_forecaster" name="forecaster">
+<option value="">---------</option>
+<option value="1">Joe</option>
+<option value="2">9News</option>
+<option value="3">CBS4</option>
+<option value="4">FOX31</option>
+<option value="5" selected="selected">The Denver Channel</option>
+<option value="6">Channel 2</option>
+<option value="7">The Weather Channel</option>
+<option value="8">The Weather Underground</option>
+<option value="9">NWS</option>
+</select></p>
+<p><label for="id_date">Date:</label> <input id="id_date" name="date" type="text" value="2015-03-06" /></p>
+    
+    <p><label for="id_forecaster">Forecaster:</label> <select id="id_forecaster" name="forecaster">
+<option value="">---------</option>
+<option value="1">Joe</option>
+<option value="2">9News</option>
+<option value="3">CBS4</option>
+<option value="4">FOX31</option>
+<option value="5">The Denver Channel</option>
+<option value="6" selected="selected">Channel 2</option>
+<option value="7">The Weather Channel</option>
+<option value="8">The Weather Underground</option>
+<option value="9">NWS</option>
+</select></p>
+<p><label for="id_date">Date:</label> <input id="id_date" name="date" type="text" value="2015-03-06" /></p>
+    
+    <p><label for="id_forecaster">Forecaster:</label> <select id="id_forecaster" name="forecaster">
+<option value="">---------</option>
+<option value="1">Joe</option>
+<option value="2">9News</option>
+<option value="3">CBS4</option>
+<option value="4">FOX31</option>
+<option value="5">The Denver Channel</option>
+<option value="6">Channel 2</option>
+<option value="7" selected="selected">The Weather Channel</option>
+<option value="8">The Weather Underground</option>
+<option value="9">NWS</option>
+</select></p>
+<p><label for="id_date">Date:</label> <input id="id_date" name="date" type="text" value="2015-03-06" /></p>
+    
+    <p><label for="id_forecaster">Forecaster:</label> <select id="id_forecaster" name="forecaster">
+<option value="">---------</option>
+<option value="1">Joe</option>
+<option value="2">9News</option>
+<option value="3">CBS4</option>
+<option value="4">FOX31</option>
+<option value="5">The Denver Channel</option>
+<option value="6">Channel 2</option>
+<option value="7">The Weather Channel</option>
+<option value="8" selected="selected">The Weather Underground</option>
+<option value="9">NWS</option>
+</select></p>
+<p><label for="id_date">Date:</label> <input id="id_date" name="date" type="text" value="2015-03-06" /></p>
+    
+    <p><label for="id_forecaster">Forecaster:</label> <select id="id_forecaster" name="forecaster">
+<option value="">---------</option>
+<option value="1">Joe</option>
+<option value="2">9News</option>
+<option value="3">CBS4</option>
+<option value="4">FOX31</option>
+<option value="5">The Denver Channel</option>
+<option value="6">Channel 2</option>
+<option value="7">The Weather Channel</option>
+<option value="8">The Weather Underground</option>
+<option value="9" selected="selected">NWS</option>
+</select></p>
+<p><label for="id_date">Date:</label> <input id="id_date" name="date" type="text" value="2015-03-06" /></p>
+
     {{ formset.as_p }}
 <hr noshade>
     {% for item in forms %}
-    {{ item }}
+    {{ item.as_p }}
     {% endfor %}
+{% endcomment %}
     <input type="submit" value="Submit" />
 </form>
 {% endblock main %}

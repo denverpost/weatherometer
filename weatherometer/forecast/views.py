@@ -26,4 +26,4 @@ def update_forecast(request):
         for item in forecasters:
             forms.append(ForecastForm(initial={'forecaster': item.pk}))
 
-    return render(request, 'forecast/form.html', {'forms': forms, 'formset': formset})
+    return render(request, 'forecast/form.html', {'forecasters': forecasters, 'forms': forms, 'formset': formset})

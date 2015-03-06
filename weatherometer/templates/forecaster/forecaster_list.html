@@ -5,7 +5,7 @@
 {% block style %}{% endblock style %}
 
 {% block main %}
-{% load charts %}
+{% load accuracy %}
     <p id="breadcrumb"><a href="/">Home</a></p>
     <h1>Weather Forecasters</h1>
 
@@ -65,7 +65,7 @@
 {% regroup object_list|dictsort:"object_list.accuracy_set" by object_list.accuracy_set.all as type_list %}
 
     {% accuracy_list_for_forecaster item 'all' as chartitem %}
- {% chart  LineXY  chartitem %}
+{% chart  LineXY  chartitem %}
 {%  scale 0 15 %}
 {% color 3072F3 ff0000 00aaaa  %}
 {% marker s FF0000 0 -1 5  %}
