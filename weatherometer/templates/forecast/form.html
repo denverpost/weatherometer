@@ -6,8 +6,8 @@
 {% block main %}
 <div class="col">
 <h2>Update the high and low temperature for the day</h2>
-<form action="/forecast/add/" id="tempform" name="tempform">
-
+<form action="/forecast/add/?tempform" id="tempform" name="tempform">
+    {{ formset.as_p }}
 </form>
 </div>
 <div class="col">

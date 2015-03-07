@@ -1,6 +1,6 @@
 from models import * 
 from forecaster.models import Forecaster
-from forms import ForecastForm
+from forms import ForecastForm, ActualTemperatureForm, Updaters
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -19,6 +19,7 @@ def forecast_today(request):
 def update_forecast(request):
     forms = []
     forecasters = Forecaster.objects.all()
+    tempform = ActualTemperatureForm()
     if request.method == 'POST':
         # Loop through the forecasters.
         # If we have forecast values for the forecaster, and we don't already
@@ -44,4 +45,4 @@ def update_forecast(request):
         for item in forecasters:
             forms.append(ForecastForm(initial={'forecaster': item.pk}))
 
-    return render(request, 'forecast/form.html', {'forecasters': forecasters, 'forms': forms})
+    return render(request, 'forecast/form.html', {'forecasters': forecasters, 'forms': forms, 'tempform': tempform})

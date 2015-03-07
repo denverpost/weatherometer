@@ -1,6 +1,6 @@
 from django import forms
 from django.forms.models import inlineformset_factory
-from models import Forecast, ForecastItem
+from models import Forecast, ForecastItem, ActualTemperature
 from django.conf import settings
 from django.db.models import get_app, get_apps, get_models
 from datetime import datetime, timedelta
@@ -8,6 +8,11 @@ from datetime import datetime, timedelta
 ForecastItemFormSet = inlineformset_factory(Forecast, ForecastItem)
 #forecast = Forecast.objects.get(pk=2)
 #formset = ForecastItemFormSet(instance=forecast)
+
+class ActualTemperatureForm(forms.ModelForm):
+    class Meta:
+        model = ActualTemperature
+        fields = '__all__'
 
 class ForecastForm(forms.ModelForm):
     class Meta:
