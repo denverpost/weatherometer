@@ -6,7 +6,8 @@
 {% block main %}
 <div class="col">
 <h2>Update the high and low temperature for the day</h2>
-<form action="/forecast/add/?tempform" id="tempform" name="tempform">
+<form action="/temperature/add/" id="tempform" name="tempform" method="post">
+    {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit" />
 </form>

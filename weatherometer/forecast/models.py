@@ -66,8 +66,8 @@ class ForecastItem(models.Model):
 
 class ActualTemperature(models.Model):
     date = models.DateField(default=datetime.today())
-    temperature_high = models.IntegerField()
-    temperature_low = models.IntegerField()
+    temperature_high = models.IntegerField(null=True, blank=True)
+    temperature_low = models.IntegerField(null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True, default=datetime.today(), null=True, blank=True)
 
     class Admin:
@@ -79,4 +79,4 @@ class ActualTemperature(models.Model):
         return "High %i, Low %i" % (self.temperature_high, self.temperature_low)
 
     def get_absolute_url(self):
-        return "/forecast/%s/" % (self.date.strftime("%Y/%b/%d").lower())
+        return "/forecast/%s/" % (self.date.strftime("%Y-%b-%d").lower())

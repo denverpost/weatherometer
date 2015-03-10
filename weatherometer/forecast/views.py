@@ -1,4 +1,5 @@
 from models import * 
+from forecast.models import ActualTemperature
 from forecaster.models import Forecaster
 from forms import ForecastForm, ActualTemperatureForm, Updaters
 from django.shortcuts import render
@@ -20,12 +21,29 @@ def update_temperature(request):
     forms = []
     items = ActualTemperature.objects.all()
     form = ActualTemperatureForm()
+    message = ''
     if request.method == 'POST':
-        pass
+        # Create a new ActualTemperature, or update existing.
+        date = datetime.datetime.strptime(request.POST['date'], "%Y-%m-%d")
+        high = int(request.POST['temperature_high'])
+        low = int(request.POST['temperature_low'])
+        try:
+            a = ActualTemperature.objects.get(date=date)
+            a.update(
+                temperature_high=high,
+                temperature_low=low)
+            a.save()
+            message = 'Temperature for %s updated' % request.POST['date']
+        except:
+            a = ActualTemperature.objects.create(
+                date=date,
+                temperature_high=high,
+                temperature_low=low)
+            message = 'Temperature for %s created' % request.POST['date']
     else:
         pass
 
-    return render(request, 'forecast/temperature_form.html', {'forms': forms, 'form': form})
+    return render(request, 'forecast/temperature_form.html', {'forms': forms, 'form': form, 'message': message})
 
 def update_forecast(request):
     forms = []
