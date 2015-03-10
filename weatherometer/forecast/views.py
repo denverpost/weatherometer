@@ -43,7 +43,7 @@ def update_temperature(request):
     else:
         pass
 
-    return render(request, 'forecast/temperature_form.html', {'forms': forms, 'form': form, 'message': message})
+    return render(request, 'forecast/temperature_form.html', {'forms': forms, 'form': form, 'message': message, 'items': items})
 
 def update_forecast(request):
     forms = []
