@@ -91,6 +91,7 @@ urlpatterns = patterns('',
     
     # Model: Forecast
     (r'^forecast/add/$', update_forecast),
+    (r'^temperature/add/$', update_temperature),
     (r'^forecast/today/$', 'forecast.views.forecast_today'),
     (r'^forecast/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/$', 'django.views.generic.dates.DayArchiveView', forecast_date_dict),
     (r'^forecast/(?P<year>\d{4})/(?P<month>[a-z]{3})/$', 'django.views.generic.dates.MonthArchiveView', forecast_date_dict),

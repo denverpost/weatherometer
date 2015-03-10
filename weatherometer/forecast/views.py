@@ -16,10 +16,20 @@ def forecast_today(request):
         queryset=Forecast.objects.filter(date__exact=datetime.date.today),
         paginate_by=50, allow_empty=True)
 
+def update_temperature(request):
+    forms = []
+    items = ActualTemperature.objects.all()
+    form = ActualTemperatureForm()
+    if request.method == 'POST':
+        pass
+    else:
+        pass
+
+    return render(request, 'forecast/temperature_form.html', {'forms': forms, 'form': form})
+
 def update_forecast(request):
     forms = []
     forecasters = Forecaster.objects.all()
-    tempform = ActualTemperatureForm()
     if request.method == 'POST':
         # Loop through the forecasters.
         # If we have forecast values for the forecaster, and we don't already
@@ -31,7 +41,6 @@ def update_forecast(request):
         # -- id_forecastitem-{{item.pk}}-forecast_day_{{count}} // day being 0 for today, 1 for tomorrow, 2 day after
         # -- id_forecastitem-{{item.pk}}-type_{{count}} // type being high or low
         for item in forecasters:
-            # Create the wrapper forecast object
             f, created = Forecast.objects.get_or_create(forecaster=item)
             for i in [0,1]:
                 prefix = "forecastitem_%d_" % item.pk
@@ -45,4 +54,4 @@ def update_forecast(request):
         for item in forecasters:
             forms.append(ForecastForm(initial={'forecaster': item.pk}))
 
-    return render(request, 'forecast/form.html', {'forecasters': forecasters, 'forms': forms, 'tempform': tempform})
+    return render(request, 'forecast/form.html', {'forecasters': forecasters, 'forms': forms})

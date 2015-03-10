@@ -1,0 +1,16 @@
+{% extends "forecast/base.html" %}
+{% block title_long %}{% block title %}{% endblock %}{% endblock %}
+{% block description %}{% endblock%}
+{% block style %}{% endblock style %}
+
+{% block main %}
+<div class="col">
+<h2>Update the high and low temperature for the day</h2>
+<form action="/forecast/add/?tempform" id="tempform" name="tempform">
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+</div>
+{% endblock main %}
+
+{% block sidebar %}{% endblock sidebar %}
