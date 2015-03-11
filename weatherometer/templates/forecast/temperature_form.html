@@ -6,6 +6,7 @@
 {% block main %}
 <div class="col">
 <h2>Update the high and low temperature for the day</h2>
+<p>Usually this is used to update the previous morning's low and the previous day's high.</p>
 <form action="/temperature/add/" id="tempform" name="tempform" method="post">
     {% csrf_token %}
     {{ form.as_p }}

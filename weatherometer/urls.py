@@ -71,8 +71,10 @@ urlpatterns = patterns('',
         TemplateView.as_view(template_name='pages/about.html'),
         name="about"),
 
-    # Uncomment the next line to enable the admin:
+    # ADMIN
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^forecast/add/$', update_forecast),
+    url(r'^temperature/add/$', update_temperature),
 
     # User management
     url(r'^users/', include("users.urls", namespace="users")),
@@ -90,8 +92,6 @@ urlpatterns = patterns('',
     (r'^forecaster/$', ForecasterList.as_view()),
     
     # Model: Forecast
-    (r'^forecast/add/$', update_forecast),
-    (r'^temperature/add/$', update_temperature),
     (r'^forecast/today/$', 'forecast.views.forecast_today'),
     (r'^forecast/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/$', 'django.views.generic.dates.DayArchiveView', forecast_date_dict),
     (r'^forecast/(?P<year>\d{4})/(?P<month>[a-z]{3})/$', 'django.views.generic.dates.MonthArchiveView', forecast_date_dict),

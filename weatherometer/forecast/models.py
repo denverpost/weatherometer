@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from forecaster.models import *
 
 TEMPERATURE_TYPE = (  
@@ -65,7 +65,7 @@ class ForecastItem(models.Model):
         	return '%i: %s: No temperature' % (self.forecast_day, self.get_type_display())
 
 class ActualTemperature(models.Model):
-    date = models.DateField(default=datetime.today())
+    date = models.DateField(default=date.today() - timedelta(1))
     temperature_high = models.IntegerField(null=True, blank=True)
     temperature_low = models.IntegerField(null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True, default=datetime.today(), null=True, blank=True)
