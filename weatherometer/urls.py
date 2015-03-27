@@ -73,8 +73,8 @@ urlpatterns = patterns('',
 
     # ADMIN
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^forecast/add/$', update_forecast),
-    url(r'^temperature/add/$', update_temperature),
+    url(r'^forecast/add/$', update_forecast, name="update_forecast"),
+    url(r'^temperature/add/$', update_temperature, name="update_temperature"),
 
     # User management
     url(r'^users/', include("users.urls", namespace="users")),
@@ -88,15 +88,15 @@ urlpatterns = patterns('',
     
     # Model: Forecaster
     #(r'^forecaster/(?P<slug>[-\w]+)/today/$', AccuracyRatingDetail.as_view()),
-    (r'^forecaster/(?P<slug>[-\w]+)/$', ForecasterDetail.as_view()),
-    (r'^forecaster/$', ForecasterList.as_view()),
+    url(r'^forecaster/(?P<slug>[-\w]+)/$', ForecasterDetail.as_view(), name="forecaster_detail"),
+    url(r'^forecaster/$', ForecasterList.as_view(), name="forecaster_index"),
     
     # Model: Forecast
-    (r'^forecast/today/$', 'forecast.views.forecast_today'),
-    (r'^forecast/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/$', 'django.views.generic.dates.DayArchiveView', forecast_date_dict),
-    (r'^forecast/(?P<year>\d{4})/(?P<month>[a-z]{3})/$', 'django.views.generic.dates.MonthArchiveView', forecast_date_dict),
-    (r'^forecast/(?P<year>\d{4})/$', 'django.views.generic.dates.YearArchiveView', forecast_date_year_dict),
-    (r'^forecast/$', 'django.views.generic.dates.ArchiveIndexView', forecast_dict),
+    url(r'^forecast/today/$', 'forecast.views.forecast_today'),
+    url(r'^forecast/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/$', 'django.views.generic.dates.DayArchiveView', forecast_date_dict, name="forecast_archive_date"),
+    url(r'^forecast/(?P<year>\d{4})/(?P<month>[a-z]{3})/$', 'django.views.generic.dates.MonthArchiveView', forecast_date_dict, name="forecast_archive_month"),
+    url(r'^forecast/(?P<year>\d{4})/$', 'django.views.generic.dates.YearArchiveView', forecast_date_year_dict, name="forecast_archive_year"),
+    url(r'^forecast/$', 'django.views.generic.dates.ArchiveIndexView', forecast_dict, "forecast_index"),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

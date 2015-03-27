@@ -2,10 +2,11 @@ from django.db import models
 from datetime import datetime, date, timedelta
 from forecaster.models import *
 
-TEMPERATURE_TYPE = (  
-    (1, 'High'), 
-    (-1, 'Low'), 
+TEMPERATURE_TYPE = (
+    (1, 'High'),
+    (-1, 'Low'),
 )
+
 
 class Forecast(models.Model):
     forecaster = models.ForeignKey(Forecaster)
@@ -23,8 +24,9 @@ class Forecast(models.Model):
         return "%s: %s" % (self.forecaster, self.date.__str__())
     '''
     def save(self):
-        """This does some light checking and field-writing to make the admin interface friendlier.
-        """
+        """ This does some light checking and field-writing to make the
+            admin interface friendlier.
+            """
         #ct = ContentType.objects.get(pk=self.content_type_id)
         #object = ct.get_object_for_this_type(id=self.object_id)
         #self.object_name = object.__str__()
@@ -35,17 +37,21 @@ class Forecast(models.Model):
         super(Forecast, self).save()
     '''
 
+
 class ForecastItem(models.Model):
-    forecast_day = models.PositiveIntegerField()    #core=True
+    forecast_day = models.PositiveIntegerField()
     temperature = models.IntegerField(null=True, blank=True)
     type = models.SmallIntegerField(default=1, choices=TEMPERATURE_TYPE)
-    differential = models.IntegerField(max_length=3, editable=False, null=True, blank=True)
-    differential_abs = models.PositiveIntegerField(max_length=3, editable=False, null=True, blank=True)
+    differential = models.IntegerField(max_length=3,
+                                       editable=False, null=True, blank=True)
+    differential_abs = models.PositiveIntegerField(max_length=3,
+                                                   editable=False, null=True,
+                                                   blank=True)
     items = models.ForeignKey(Forecast)
-    # edit_inline=models.TABULAR, 
-    #    min_num_in_admin=2, num_in_admin=20, num_extra_on_change=10, max_num_in_admin=30)
+    # edit_inline=models.TABULAR,
+    #    min_num_in_admin=2, num_in_admin=20,
+    #    num_extra_on_change=10, max_num_in_admin=30)
     date = models.DateField(blank=True, null=True)
-
 
     def get_forecast_date(self):
         from datetime import datetime, timedelta
@@ -54,21 +60,27 @@ class ForecastItem(models.Model):
     date = property(get_forecast_date)
 
     class Admin:
-        list_display = ('forecast_day', 'temperature', 'type', 'differential', 'date',)
+        list_display = ('forecast_day', 'temperature',
+                        'type', 'differential', 'date',)
         list_filter = ('forecast_day', 'temperature', 'type', 'differential',)
         save_on_top = True
 
     def __unicode__(self):
-    	if self.temperature <> None:
-        	return '%i: %s: %i' % (self.forecast_day, self.get_type_display(), self.temperature)
+        if self.temperature is not None:
+            return '%i: %s: %i' % (self.forecast_day,
+                                   self.get_type_display(), self.temperature)
         else:
-        	return '%i: %s: No temperature' % (self.forecast_day, self.get_type_display())
+            return '%i: %s: No temperature' % (self.forecast_day,
+                                               self.get_type_display())
+
 
 class ActualTemperature(models.Model):
     date = models.DateField(default=date.today() - timedelta(1))
     temperature_high = models.IntegerField(null=True, blank=True)
     temperature_low = models.IntegerField(null=True, blank=True)
-    date_added = models.DateTimeField(auto_now_add=True, default=datetime.today(), null=True, blank=True)
+    date_added = models.DateTimeField(auto_now_add=True,
+                                      default=datetime.today(), null=True,
+                                      blank=True)
 
     class Admin:
         list_display = ('date', 'temperature_high', 'temperature_low',)
