@@ -63,6 +63,8 @@ mv nws.html nws_$(date +%Y%m%d-%H%M).html
 # SCRAPE http://www.nws.noaa.gov/xml/tpex/scs.php
 # LOOKS LIKE previous day temps / current day forecast / next day forecast
 # DENVER           35  27         SNOW    27/04   SNOW    17/01
+# OR SCRAPE http://mesonet.agron.iastate.edu/COOP/cat.phtml?station=DMNC2&network=CO_COOP
+# OR SCRAPE http://mesonet.agron.iastate.edu/cgi-bin/request/daily.py?network=CO_COOP&stations=DMNC2&year1=2015&month1=1&day1=1&year2=2015&month2=1&day2=2
 
 # ===============================================
 # DAILY ADMIN

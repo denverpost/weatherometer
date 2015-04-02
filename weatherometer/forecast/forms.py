@@ -12,12 +12,14 @@ ForecastItemFormSet = inlineformset_factory(Forecast, ForecastItem)
 
 class ActualTemperatureForm(forms.ModelForm):
     class Meta:
+        exclude = []
         model = ActualTemperature
         fields = '__all__'
 
 
 class ForecastForm(forms.ModelForm):
     class Meta:
+        exclude = []
         model = Forecast
         fields = '__all__'
 

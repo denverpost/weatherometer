@@ -1,7 +1,9 @@
 # Weather-O-Meter
 This is a django app for tracking weather forecasts from forecasters and evaluating how often the forecasts are correct and which forecaster is the most accurate.
 
-## Setup
+## Content Admin
+
+## Developer Setup
 The steps below will get you up and running with a local development environment. We assume you have the following installed:
 
 * pip
