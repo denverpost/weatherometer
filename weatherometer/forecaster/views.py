@@ -3,8 +3,9 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from bakery.views import BuildableDetailView, BuildableListView
 
-class ForecasterList(ListView):
+class ForecasterList(BuildableListView):
     def get_queryset(self):
         return Forecaster.objects.all()
     #def list(request):
@@ -13,7 +14,7 @@ class ForecasterList(ListView):
     #        paginate_by=50, allow_empty=True)
 
 
-class ForecasterDetail(DetailView):
+class ForecasterDetail(BuildableDetailView):
     def get_queryset(self):
         return Forecaster.objects.all()
         #return DetailView(request,

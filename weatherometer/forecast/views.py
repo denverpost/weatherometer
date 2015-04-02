@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from bakery.views import BuildableDetailView, BuildableListView
 import datetime
 
 class ForecastToday():

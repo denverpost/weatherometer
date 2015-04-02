@@ -44,6 +44,7 @@ class Local(Common):
     # Your local stuff: Below this line define 3rd party library settings
     BUILD_DIR = '~/work/weatherometer/build/'
     BAKERY_VIEWS = (
-        'urls.BakeryHomeView',
-        #'forecast.views.TodayView',
+        # 'urls.BakeryHomeView',
+        # 'forecaster.views.ForecasterList',
+        # 'forecaster.views.ForecasterDetail',
     )
