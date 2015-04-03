@@ -36,7 +36,9 @@ def get_highlows_dmns():
 
 def update_temperature(request):
     forms = []
-    highlow = get_highlows_dmns()
+    highlow = ''
+
+
     for i, item in enumerate(highlow):
         if i == 0:
             keys = item
@@ -65,9 +67,15 @@ def update_temperature(request):
                 temperature_low=low)
             message = 'Temperature for %s created' % request.POST['date']
     else:
-        pass
+        # Get the highs and lows for easy input.
+        # Eventually, we can use this data and create the objects programmatically.
+        highlows = get_highlows_dmns()
+        highlow = '<ul>'
+        for item in highlows:
+            highlow += '<li><strong>%s</strong>: %s/%s' % ( item['day'], item['min_temp_f'], item['max_temp_f'] )
+        highlow += '</ul>'
 
-    return render(request, 'forecast/temperature_form.html', {'forms': forms, 'form': form, 'message': message, 'items': items})
+    return render(request, 'forecast/temperature_form.html', {'forms': forms, 'form': form, 'message': message, 'items': items, 'highlow': highlow})
 
 def update_forecast(request):
     forms = []
