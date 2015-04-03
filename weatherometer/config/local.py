@@ -45,6 +45,6 @@ class Local(Common):
     BUILD_DIR = '~/work/weatherometer/build/'
     BAKERY_VIEWS = (
         # 'urls.BakeryHomeView',
-        # 'forecaster.views.ForecasterList',
-        # 'forecaster.views.ForecasterDetail',
+        'forecaster.views.ForecasterList',
+        'forecaster.views.ForecasterDetail',
     )

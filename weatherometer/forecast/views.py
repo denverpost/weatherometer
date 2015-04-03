@@ -7,6 +7,9 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+import csv
+import urllib2
+from datetime import date, timedelta
 from bakery.views import BuildableDetailView, BuildableListView
 import datetime
 
@@ -18,8 +21,28 @@ def forecast_today(request):
         queryset=Forecast.objects.filter(date__exact=datetime.date.today),
         paginate_by=50, allow_empty=True)
 
+def get_highlows_dmns():
+    dates = {
+        'yesterday': date.today() - timedelta(1),
+        'weekago': date.today() - timedelta(8)
+    }
+    query = '&year1=%d&month1=%d&day1=%d&year2=%d&month2=%d&day2=%d' % ( dates['weekago'].year, dates['weekago'].month, dates['weekago'].day,
+                                                                        dates['yesterday'].year, dates['yesterday'].month, dates['yesterday'].day 
+                                                                        )
+    url = 'http://mesonet.agron.iastate.edu/cgi-bin/request/daily.py?network=CO_COOP&stations=DMNC2%s' % query
+    response = urllib2.urlopen(url)
+    data = csv.reader(response)
+    return data
+
 def update_temperature(request):
     forms = []
+    highlow = get_highlows_dmns()
+    for i, item in enumerate(highlow):
+        if i == 0:
+            keys = item
+            continue
+        record = zip(keys, item)
+        print record
     items = ActualTemperature.objects.all()
     form = ActualTemperatureForm()
     message = ''
